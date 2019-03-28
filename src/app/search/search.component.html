@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Search Form</h1>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+          <label for="price">Price</label>
+          <select class="form-control" id="price" formControlName="price" required>
+            <option *ngFor="let price of prices" [value]="price">{{price}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" formControlName="location" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" />
+            <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                <div *ngIf="f.location.errors.required">Location is required</div>
+            </div>
+        </div>
+
+    <button [disabled]="loading" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
+<h2>{{topic}}</h2>
+<table>
+    <tr *ngFor="let d of dataz">
+      <td>{{ d.name }}</td>
+      <td> {{ d.rating }}</td>
+    </tr>
+  </table>
+
+
